@@ -7,6 +7,8 @@ const DB_CONNECT = require("./config/db");
 const fileUploader = require("express-fileupload");
 const { ADD_ALL_BOOKS } = require("./controllers/all-books-controller");
 const books_router = require("./routers/books-router");
+const fav_router = require("./routers/favbook-rotuer");
+const cart_router = require("./routers/cart-rotuer");
 dotenv.config();
 const app = express();
 // middleware
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use(fileUploader({ useTempFiles: true }));
 app.use("/api/v1/user", user_router);
 app.use("/api/v1/books", books_router);
+app.use("/api/v1/fav", fav_router);
+app.use("/api/v1/cart", cart_router);
 app.use("*", async (req, res, next) =>
   next(
     CreateError(`${req.originalUrl} this url is not valid`, 500, "global error")

@@ -1,6 +1,6 @@
 const BookArray = require("../BookArray");
 const { CreateError } = require("../middleware/ErrorHandle");
-console.log(BookArray);
+// console.log(BookArray);
 const AllBooksModel = require("../models/all-books-schema");
 const ADD_ALL_BOOKS = async () => {
   try {

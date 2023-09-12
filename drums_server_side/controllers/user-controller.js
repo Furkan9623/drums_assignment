@@ -47,7 +47,11 @@ const LOGIN_USER_CONTROLLER = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: "User login successfull",
-      User: { name: existUser?.name, image: existUser?.imageUrl },
+      User: {
+        name: existUser?.name,
+        image: existUser?.imageUrl,
+        id: existUser?._id,
+      },
     });
   } catch (error) {
     return next(CreateError(error.message, 500, "login controller"));

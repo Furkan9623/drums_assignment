@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-const all_books_schema = new mongoose.Schema(
+const fav_schema = new mongoose.Schema(
   {
     title: {
       type: String,
-      unique: true,
       required: [true, "Title are required"],
     },
     author: { type: String, required: [true, "Author name required"] },
@@ -15,5 +14,5 @@ const all_books_schema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const AllBooksModel = mongoose.model("allbook", all_books_schema);
-module.exports = AllBooksModel;
+const FavModels = mongoose.model("favbook", fav_schema);
+module.exports = FavModels;
