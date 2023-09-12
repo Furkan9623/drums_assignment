@@ -7,6 +7,9 @@ import FavouriteBooks from "../pages/Favourite_Books";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
+import AddBooks from "../pages/AddBooks";
+import Cart from "../pages/Cart";
+import CartBooks from "../pages/Cart";
 const AllRoutes = () => {
   const [loading, setLoading] = useState(false);
   function loadingStatus() {
@@ -32,6 +35,14 @@ const AllRoutes = () => {
           <Route
             path="/fav-books"
             element={loading ? <Spinner /> : <FavouriteBooks />}
+          />
+          <Route
+            path="/add-books"
+            element={loading ? <Spinner /> : <AddBooks />}
+          />
+          <Route
+            path="/cart-books"
+            element={loading ? <Spinner /> : <CartBooks />}
           />
         </Route>
       </Routes>

@@ -20,7 +20,9 @@ const Navbar = ({ loadingStatus }) => {
     localStorage.clear();
     setLoginAuth(false);
   };
-  const { name, image } = JSON.parse(localStorage.getItem("User")) || "";
+  const User = JSON.parse(localStorage.getItem("User")) || "";
+
+  // const { name, image } = User;
   return (
     <AppBar>
       <Box sx={{ padding: "0 4rem" }}>
@@ -33,35 +35,43 @@ const Navbar = ({ loadingStatus }) => {
           <Link className="link" to={"/"}>
             ALL BOOKS
           </Link>
-          <Box sx={{ display: "flex", gap: "3vmax" }}>
-            <Link
-              className="link"
-              onClick={() => loadingStatus()}
-              to={"/my-books"}
-            >
-              MY BOOKS
-            </Link>
-            <Link
-              className="link"
-              onClick={() => loadingStatus()}
-              to={"/fav-books"}
-            >
-              FAVOURITE BOOK
-            </Link>
-            <Link
-              className="link"
-              onClick={() => loadingStatus()}
-              to={"/fav-books"}
-            >
-              ADD OLD BOOKS
-            </Link>
-          </Box>
+          {loginAuth && (
+            <Box sx={{ display: "flex", gap: "3vmax" }}>
+              <Link
+                className="link"
+                onClick={() => loadingStatus()}
+                to={"/my-books"}
+              >
+                MY BOOKS
+              </Link>
+              <Link
+                className="link"
+                onClick={() => loadingStatus()}
+                to={"/fav-books"}
+              >
+                FAVOURITE BOOK
+              </Link>
+              <Link
+                className="link"
+                onClick={() => loadingStatus()}
+                to={"/add-books"}
+              >
+                ADD OLD BOOKS
+              </Link>
+            </Box>
+          )}
           <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             {loginAuth && (
               <>
-                <Typography>{name}</Typography>
-                <Avatar src={image}>{name?.[0]}</Avatar>
-                <Link className="link">CART</Link>
+                <Typography>{User?.name}</Typography>
+                <Avatar src={User?.image}>{User?.name?.[0]}</Avatar>
+                <Link
+                  className="link"
+                  onClick={() => loadingStatus()}
+                  to={"/cart-books"}
+                >
+                  CART
+                </Link>
               </>
             )}
             <Button

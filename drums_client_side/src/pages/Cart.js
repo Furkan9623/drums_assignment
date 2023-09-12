@@ -1,29 +1,33 @@
-import { GET_ALL_FAV_BOOKS } from "../Api/favbooks.api";
 import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import BookCard from "../components/Card";
+import { GET_ALL_CART_BOOKS } from "../Api/cart-api";
 
-const FavouriteBooks = () => {
-  const [favBooks, setFavBooks] = useState([]);
+const CartBooks = () => {
+  const [cartBooks, setCartBooks] = useState([]);
 
-  const getFavBooks = async () => {
+  const getCartBooks = async () => {
     const { id } = JSON.parse(localStorage.getItem("User")) || "";
-    const result = await GET_ALL_FAV_BOOKS(id);
+    const result = await GET_ALL_CART_BOOKS(id);
     console.log(result);
-    const res = result?.data?.favBooks;
+    const res = result?.data?.cartBooks;
     const error = result?.response?.data?.message;
-    return result?.status === 200 ? setFavBooks(res) : alert(error);
+    return result?.status === 200 ? setCartBooks(res) : alert(error);
   };
   useEffect(() => {
-    getFavBooks();
+    getCartBooks();
   }, []);
+
+  const totalPrice = cartBooks.reduce((acc, current) => {
+    return acc + parseInt(current.price);
+  }, 0);
   return (
     <Box>
       <Typography variant="h5" sx={{ marginBottom: "2rem", fontWeight: "600" }}>
-        MY FAVOURITE BOOKS
+        MY CART BOOKS
       </Typography>
       <Box>
-        {favBooks?.length > 0 ? (
+        {cartBooks?.length > 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -32,11 +36,11 @@ const FavouriteBooks = () => {
               justifyContent: "center",
             }}
           >
-            {favBooks?.map((elem) => {
+            {cartBooks?.map((elem) => {
               return (
                 <BookCard
                   book={elem}
-                  getFavBooks={getFavBooks}
+                  getCartBooks={getCartBooks}
                   key={elem?._id}
                 />
               );
@@ -46,7 +50,9 @@ const FavouriteBooks = () => {
           <h1>Books Not found</h1>
         )}
       </Box>
+      {cartBooks?.length > 0 && <h1>Total Price : ₹ {totalPrice}</h1>}
     </Box>
   );
 };
-export default FavouriteBooks;
+
+export default CartBooks;

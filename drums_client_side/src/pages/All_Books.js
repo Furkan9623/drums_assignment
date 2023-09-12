@@ -143,7 +143,7 @@ const AllBooks = () => {
           }}
         >
           {copyArray?.map((elem) => {
-            return <BookCard book={elem} />;
+            return <BookCard book={elem} key={elem._id} />;
           })}
         </Box>
       ) : (
