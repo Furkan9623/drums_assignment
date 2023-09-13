@@ -61,9 +61,11 @@ export default function BookCard({
     <Card sx={{ width: "20vmax", height: "25vmax", paddingBottom: "3vmax" }}>
       <img src={image} width="100%" height="50%" alt="" />
 
-      <Typography>Title : {title}</Typography>
-      <Typography> Author : {author}</Typography>
-      <Typography>Price : ₹ {price}</Typography>
+      <Box sx={{ width: "fit-content", textAlign: "left", margin: "auto" }}>
+        <Typography sx={{ fontWeight: "600" }}>Title : {title}</Typography>
+        <Typography sx={{ fontWeight: "600" }}> Author : {author}</Typography>
+        <Typography sx={{ fontWeight: "600" }}>Price : ₹ {price}</Typography>
+      </Box>
       <CardContent>
         <Typography sx={{ textAlign: "left" }}>
           {description.slice(0, 70)}

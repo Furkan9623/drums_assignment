@@ -63,7 +63,7 @@ const Navbar = ({ loadingStatus }) => {
           <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             {loginAuth && (
               <>
-                <Typography>{User?.name}</Typography>
+                <Typography sx={{ fontWeight: "550" }}>{User?.name}</Typography>
                 <Avatar src={User?.image}>{User?.name?.[0]}</Avatar>
                 <Link
                   className="link"

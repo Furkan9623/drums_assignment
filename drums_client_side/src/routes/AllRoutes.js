@@ -10,6 +10,8 @@ import Spinner from "../components/Spinner";
 import AddBooks from "../pages/AddBooks";
 import Cart from "../pages/Cart";
 import CartBooks from "../pages/Cart";
+import ForgotPassword from "../pages/forgot-password/ForgotPassword";
+import ResetPassword from "../pages/forgot-password/ResetPassword";
 const AllRoutes = () => {
   const [loading, setLoading] = useState(false);
   function loadingStatus() {
@@ -45,6 +47,14 @@ const AllRoutes = () => {
             element={loading ? <Spinner /> : <CartBooks />}
           />
         </Route>
+        <Route
+          path="/forgot"
+          element={loading ? <Spinner /> : <ForgotPassword />}
+        />
+        <Route
+          path="/reset/:email"
+          element={loading ? <Spinner /> : <ResetPassword />}
+        />
       </Routes>
     </>
   );

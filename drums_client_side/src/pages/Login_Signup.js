@@ -137,6 +137,8 @@ const Login_Signup = () => {
                 color: "white",
                 cursor: "pointer",
               }}
+              type="button"
+              onClick={() => navigate("/forgot")}
             >
               Forgot Password
             </button>
