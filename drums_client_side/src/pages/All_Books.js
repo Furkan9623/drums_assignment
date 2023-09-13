@@ -65,6 +65,7 @@ const AllBooks = () => {
           gap: "1rem",
           flexDirection: "column",
           width: "50%",
+
           margin: "auto",
         }}
       >

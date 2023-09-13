@@ -8,6 +8,7 @@ import { Button, Box } from "@mui/material";
 import { DELETE_USER_BOOKS } from "../Api/books-api";
 import { ADD_FAV_BOOKS, DELETE_FAV_BOOKS } from "../Api/favbooks.api";
 import { ADD_CART_BOOKS, DELETE_CART_BOOKS } from "../Api/cart-api";
+import { loginContext } from "../context/MyContext";
 export default function BookCard({
   book,
   getUserBooks,
@@ -57,9 +58,12 @@ export default function BookCard({
       ? (alert("Books Deleted"), getCartBooks?.())
       : alert(error);
   };
+  const { loginAuth } = React.useContext(loginContext);
   return (
-    <Card sx={{ width: "20vmax", height: "25vmax", paddingBottom: "3vmax" }}>
-      <img src={image} width="100%" height="50%" alt="" />
+    <Card
+      sx={{ width: "20vmax", height: "fit-content", paddingBottom: "3vmax" }}
+    >
+      <img src={image} width="100%" height="200px" alt="" />
 
       <Box sx={{ width: "fit-content", textAlign: "left", margin: "auto" }}>
         <Typography sx={{ fontWeight: "600" }}>Title : {title}</Typography>
@@ -94,12 +98,21 @@ export default function BookCard({
             </Button>
           ) : (
             <>
-              <Button variant="contained" size="small" onClick={addToCart}>
-                ADD TO CART
-              </Button>
-              <Button variant="contained" size="small" onClick={addToFavList}>
-                ADD TO FAVOURITE
-              </Button>
+              {loginAuth && (
+                <>
+                  <Button variant="contained" size="small" onClick={addToCart}>
+                    ADD TO CART
+                  </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    color="success"
+                    onClick={addToFavList}
+                  >
+                    ADD TO FAVOURITE
+                  </Button>
+                </>
+              )}
             </>
           )}
         </Box>
