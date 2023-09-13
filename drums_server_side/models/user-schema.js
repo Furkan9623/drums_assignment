@@ -8,7 +8,7 @@ const user_schema = new mongoose.Schema(
     Books: [{ type: mongoose.Schema.Types.ObjectId, ref: "allbook" }],
     FavBooks: [{ type: mongoose.Schema.Types.ObjectId, ref: "favbook" }],
     CartBooks: [{ type: mongoose.Schema.Types.ObjectId, ref: "cart" }],
-    otp: { otpCode: String, expiredTime: Number },
+    Otp: { otpCode: String, expiresTime: Number },
   },
   { timestamps: true }
 );

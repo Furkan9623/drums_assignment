@@ -7,4 +7,12 @@ const HashPassword = async (password) => {
     .catch((er) => er);
 };
 
-module.exports = { HashPassword };
+const ComparePassword = async (password, hashPassword) => {
+  try {
+    const compare = await bcrypt.compare(password, hashPassword);
+    return compare;
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { HashPassword, ComparePassword };

@@ -1,5 +1,5 @@
 const FileUploadOnCloudinary = require("../config/cloudinary-config");
-const { HashPassword } = require("../helpers/hash-password");
+const { HashPassword, ComparePassword } = require("../helpers/hash-password");
 const { CreateError } = require("../middleware/ErrorHandle");
 const UserModel = require("../models/user-schema");
 
@@ -41,7 +41,7 @@ const LOGIN_USER_CONTROLLER = async (req, res, next) => {
     const existUser = await UserModel.findOne({ email });
     if (!existUser)
       return next(CreateError("User not exist", 500, "login cntroler"));
-    const matchPassword = await HashPassword(existUser?.password);
+    const matchPassword = await ComparePassword(password, existUser?.password);
     if (!matchPassword)
       return next(CreateError("Wrong credential", 400, "login controller"));
     return res.status(200).json({
