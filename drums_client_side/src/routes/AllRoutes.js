@@ -36,7 +36,13 @@ const AllRoutes = () => {
           />
           <Route
             path="/fav-books"
-            element={loading ? <Spinner /> : <FavouriteBooks />}
+            element={
+              loading ? (
+                <Spinner />
+              ) : (
+                <FavouriteBooks loadingStatus={loadingStatus} />
+              )
+            }
           />
           <Route
             path="/add-books"

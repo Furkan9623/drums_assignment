@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import BookCard from "../components/Card";
 
-const FavouriteBooks = () => {
+const FavouriteBooks = ({ loadingStatus }) => {
   const [favBooks, setFavBooks] = useState([]);
 
   const getFavBooks = async () => {
@@ -37,6 +37,7 @@ const FavouriteBooks = () => {
                 <BookCard
                   book={elem}
                   getFavBooks={getFavBooks}
+                  loadingStatus={loadingStatus}
                   key={elem?._id}
                 />
               );

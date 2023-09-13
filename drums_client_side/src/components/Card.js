@@ -14,6 +14,7 @@ export default function BookCard({
   getUserBooks,
   getFavBooks,
   getCartBooks,
+  loadingStatus,
 }) {
   const { _id, title, author, image, description, price } = book;
   const deleteMyBooks = async () => {
@@ -38,6 +39,7 @@ export default function BookCard({
   const deleteFavBooks = async () => {
     const result = await DELETE_FAV_BOOKS(_id);
     const error = result?.response?.data?.message;
+    loadingStatus();
     return result?.status === 200
       ? (alert("Books Deleted"), getFavBooks?.())
       : alert(error);
@@ -60,11 +62,8 @@ export default function BookCard({
   };
   const { loginAuth } = React.useContext(loginContext);
   return (
-    <Card
-      sx={{ width: "20vmax", height: "fit-content", paddingBottom: "3vmax" }}
-    >
+    <Card sx={{ width: "300px", height: "400px", paddingBottom: "3vmax" }}>
       <img src={image} width="100%" height="200px" alt="" />
-
       <Box sx={{ width: "fit-content", textAlign: "left", margin: "auto" }}>
         <Typography sx={{ fontWeight: "600" }}>Title : {title}</Typography>
         <Typography sx={{ fontWeight: "600" }}> Author : {author}</Typography>
@@ -109,7 +108,7 @@ export default function BookCard({
                     color="success"
                     onClick={addToFavList}
                   >
-                    ADD TO FAVOURITE
+                    ADD TO FAV
                   </Button>
                 </>
               )}

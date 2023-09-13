@@ -18,6 +18,7 @@ const Navbar = ({ loadingStatus }) => {
   };
   const LogoutUser = () => {
     localStorage.clear();
+    loadingStatus();
     setLoginAuth(false);
   };
   const User = JSON.parse(localStorage.getItem("User")) || "";
