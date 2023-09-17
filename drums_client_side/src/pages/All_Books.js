@@ -9,14 +9,19 @@ import {
   InputLabel,
 } from "@mui/material";
 import BookCard from "../components/Card";
+import { loadingContext } from "../context/MyContext";
+import Spinner from "../components/Spinner";
 const AllBooks = () => {
   const [Books, setBooks] = useState([]);
   const [priceInput, setPriceInput] = useState("");
   const [nameFilter, setNameFilter] = useState("");
   const [genres, setGeneres] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const { loading, setLoading } = useContext(loadingContext);
   const getAllBooks = async () => {
+    setLoading(true);
     const result = await GET_ALL_BOOKS(nameFilter, genres, searchQuery);
+    setLoading(false);
     const res = result?.data?.all_books;
     const err = result?.response?.data?.message;
     return result?.status === 200 ? setBooks(res) : alert(err);
@@ -83,7 +88,7 @@ const AllBooks = () => {
             justifyContent: "space-between",
           }}
         >
-          <FormControl sx={{ width: "15vmax" }}>
+          <FormControl sx={{ width: "15vmax" }} size="small">
             <InputLabel id="demo-simple-select-label">Sort By Price</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -98,7 +103,7 @@ const AllBooks = () => {
             </Select>
           </FormControl>
           <FormControl sx={{ width: "15vmax" }}>
-            <InputLabel id="demo-simple-select-label">
+            <InputLabel id="demo-simple-select-label" size="small">
               Filter By Author
             </InputLabel>
             <Select
@@ -113,7 +118,7 @@ const AllBooks = () => {
               <MenuItem value="Orson Scott Card">Orson Scott Card</MenuItem>
             </Select>
           </FormControl>
-          <FormControl sx={{ width: "15vmax" }}>
+          <FormControl sx={{ width: "15vmax" }} size="small">
             <InputLabel id="demo-simple-select-label">
               Filter By Generes
             </InputLabel>
@@ -134,21 +139,27 @@ const AllBooks = () => {
         </Box>
       </Box>
 
-      {copyArray?.length > 0 ? (
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "3vmax",
-            justifyContent: "center",
-          }}
-        >
-          {copyArray?.map((elem) => {
-            return <BookCard book={elem} key={elem._id} />;
-          })}
-        </Box>
+      {loading ? (
+        <Spinner />
       ) : (
-        <h1>Books Not found</h1>
+        <>
+          {copyArray?.length > 0 ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "3vmax",
+                justifyContent: "center",
+              }}
+            >
+              {copyArray?.map((elem) => {
+                return <BookCard book={elem} key={elem._id} />;
+              })}
+            </Box>
+          ) : (
+            <h1>Books Not found</h1>
+          )}
+        </>
       )}
     </Box>
   );

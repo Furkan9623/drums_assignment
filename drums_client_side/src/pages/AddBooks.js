@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ADD_BOOKS } from "../Api/books-api";
+import { loadingContext } from "../context/MyContext";
 
 const AddBooks = () => {
   const { id } = JSON.parse(localStorage.getItem("User")) || { id: "" };
@@ -35,6 +36,7 @@ const AddBooks = () => {
   formData.append("bookImage", file);
   formData.append("Books", JSON.stringify(formInput));
   const navigate = useNavigate();
+  const { loading, setLoading } = useContext(loadingContext);
   const formSubmit = async (e) => {
     e.preventDefault();
     console.log(Object.fromEntries(formData));
@@ -52,7 +54,7 @@ const AddBooks = () => {
           width: "40vmax",
           display: "flex",
           boxShadow: "0 0 10px grey",
-          padding: "2rem",
+          padding: "1.3rem",
           flexDirection: "column",
           gap: "1rem",
           borderRadius: "5px",
@@ -82,7 +84,9 @@ const AddBooks = () => {
         />
 
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Genere</InputLabel>
+          <InputLabel id="demo-simple-select-label" size="small">
+            Genere
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -90,6 +94,7 @@ const AddBooks = () => {
             style={{ textAlign: "left" }}
             name="genres"
             onChange={handleChange}
+            size="small"
           >
             <MenuItem value="abc">Ten</MenuItem>
             <MenuItem value="abc">Twenty</MenuItem>

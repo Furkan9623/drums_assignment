@@ -20,4 +20,15 @@ const DELETE_FAV_BOOKS = async (id) => {
     .then((res) => res)
     .catch((er) => er);
 };
-export { ADD_FAV_BOOKS, GET_ALL_FAV_BOOKS, DELETE_FAV_BOOKS };
+const DELETE_ALL_FAVBOOKS = async (id) => {
+  return axios
+    .patch(`${URL}/fav/del-allfavbooks/${id}`)
+    .then((res) => res)
+    .catch((er) => er);
+};
+export {
+  ADD_FAV_BOOKS,
+  GET_ALL_FAV_BOOKS,
+  DELETE_FAV_BOOKS,
+  DELETE_ALL_FAVBOOKS,
+};

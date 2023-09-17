@@ -8,17 +8,19 @@ import {
 } from "@mui/material";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginContext } from "../context/MyContext";
-const Navbar = ({ loadingStatus }) => {
+import { loadingContext, loginContext } from "../context/MyContext";
+const Navbar = () => {
   const navigate = useNavigate();
   const { loginAuth, setLoginAuth } = useContext(loginContext);
+  const { loadingStatus } = useContext(loadingContext);
+  console.log(loadingStatus);
   const LoginUser = () => {
     navigate("/login_signup");
     loadingStatus();
   };
   const LogoutUser = () => {
-    localStorage.clear();
     loadingStatus();
+    localStorage.clear();
     setLoginAuth(false);
   };
   const User = JSON.parse(localStorage.getItem("User")) || "";
@@ -38,18 +40,10 @@ const Navbar = ({ loadingStatus }) => {
           </Link>
           {loginAuth && (
             <Box sx={{ display: "flex", gap: "3vmax" }}>
-              <Link
-                className="link"
-                onClick={() => loadingStatus()}
-                to={"/my-books"}
-              >
+              <Link className="link" to={"/my-books"}>
                 MY BOOKS
               </Link>
-              <Link
-                className="link"
-                onClick={() => loadingStatus()}
-                to={"/fav-books"}
-              >
+              <Link className="link" to={"/fav-books"}>
                 FAVOURITE BOOK
               </Link>
               <Link
@@ -64,7 +58,9 @@ const Navbar = ({ loadingStatus }) => {
           <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
             {loginAuth && (
               <>
-                <Typography sx={{ fontWeight: "550" }}>{User?.name}</Typography>
+                <Typography sx={{ fontWeight: "550" }}>
+                  {User?.name.toUpperCase()}
+                </Typography>
                 <Avatar src={User?.image}>{User?.name?.[0]}</Avatar>
                 <Link
                   className="link"

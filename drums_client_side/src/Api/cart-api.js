@@ -20,4 +20,15 @@ const DELETE_CART_BOOKS = async (id) => {
     .then((res) => res)
     .catch((er) => er);
 };
-export { ADD_CART_BOOKS, GET_ALL_CART_BOOKS, DELETE_CART_BOOKS };
+const DELETE_ALL_CARTITEM = async (id) => {
+  return axios
+    .patch(`${URL}/cart/del-all-cartbooks/${id}`)
+    .then((res) => res)
+    .catch((er) => er);
+};
+export {
+  ADD_CART_BOOKS,
+  GET_ALL_CART_BOOKS,
+  DELETE_CART_BOOKS,
+  DELETE_ALL_CARTITEM,
+};
