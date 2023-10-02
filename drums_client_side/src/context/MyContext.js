@@ -8,6 +8,7 @@ const ContextProvider = ({ children }) => {
     localStorage.getItem("loginAuth") === "true" ? true : false;
   const [loginAuth, setLoginAuth] = useState(presistLogin);
   const [loading, setLoading] = useState(false);
+  const [toggle, setToggle] = useState("register");
   useEffect(() => {
     localStorage.setItem("loginAuth", loginAuth);
   }, [loginAuth]);

@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:8080/api/v1";
+const URL = "https://books-store-app-78eg.onrender.com/api/v1";
 const ADD_CART_BOOKS = async (data) => {
   return axios
     .post(`${URL}/cart/add-cartbooks`, data)

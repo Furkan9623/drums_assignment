@@ -18,7 +18,7 @@ const ResetPassword = () => {
     console.log(result);
     const error = result?.response?.data?.message;
     return result?.status === 200
-      ? (alert("Password changed"), navigate("/login_signup"))
+      ? (alert("Password changed"), navigate("/register-login"))
       : alert(error);
   };
   return (

@@ -8,14 +8,17 @@ import {
 } from "@mui/material";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loadingContext, loginContext } from "../context/MyContext";
+import {
+  loadingContext,
+  loginContext,
+} from "../context/MyContext";
 const Navbar = () => {
   const navigate = useNavigate();
   const { loginAuth, setLoginAuth } = useContext(loginContext);
   const { loadingStatus } = useContext(loadingContext);
   console.log(loadingStatus);
   const LoginUser = () => {
-    navigate("/login_signup");
+    navigate("/register-login");
     loadingStatus();
   };
   const LogoutUser = () => {

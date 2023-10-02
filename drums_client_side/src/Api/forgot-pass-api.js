@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:8080/api/v1";
+const URL = "https://books-store-app-78eg.onrender.com/api/v1";
 const Forogt_Password = async (email) => {
   return axios
     .patch(`${URL}/forgot/forgot`, { email })

@@ -62,7 +62,7 @@ const ForgotPassword = () => {
             size="small"
             sx={{ fontWeight: "600" }}
             LinkComponent={Link}
-            to="/login_signup"
+            to="/register-login"
           >
             Click
           </Button>

@@ -19,7 +19,7 @@ const AllRoutes = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/login_signup" element={<Login_Signup />} />
+        <Route path="/register-login" element={<Login_Signup />} />
         <Route path="/" element={<AllBooks />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/my-books" element={<MyBooks />} />

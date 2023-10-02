@@ -1,5 +1,6 @@
 import axios from "axios";
-const URL = "http://localhost:8080/api/v1";
+
+const URL = "https://books-store-app-78eg.onrender.com/api/v1";
 const GET_ALL_BOOKS = async (nameFilter, genres, title) => {
   return axios
     .get(

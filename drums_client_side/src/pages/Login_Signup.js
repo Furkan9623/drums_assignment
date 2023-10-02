@@ -5,15 +5,18 @@ import { LOGIN_USER, REGISTER_USER } from "../Api/user-api";
 import { loginContext } from "../context/MyContext";
 const Login_Signup = () => {
   const [toggle, setToggle] = useState("register");
+
+  console.log(setToggle);
   const initValue = {
     ...(toggle === "register" && { name: "" }),
     email: "",
     password: "",
   };
+
   const [formInput, setFormInput] = useState(initValue);
   const [file, setFiles] = useState("");
-  const toggleDiv = (toggle) => {
-    setToggle(toggle);
+  const toggleDiv = (toggled) => {
+    setToggle(toggled);
   };
   const handleInputChange = (e) => {
     setFormInput({ ...formInput, [e.target.name]: e.target.value });

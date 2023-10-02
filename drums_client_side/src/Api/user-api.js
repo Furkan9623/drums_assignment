@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "http://localhost:8080/api/v1";
+const URL = "https://books-store-app-78eg.onrender.com/api/v1";
 const REGISTER_USER = async (data) => {
   const config = { headers: { "Content-Type": "multipart/form-data" } };
   return axios
